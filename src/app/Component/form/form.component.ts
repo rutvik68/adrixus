@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/Service/data.service';
+import { NotificationService } from 'src/app/Service/notification.service';
 
 @Component({
   selector: 'app-form',
@@ -14,6 +15,7 @@ export class FormComponent implements OnInit {
   constructor(
     public service : DataService,
     private route:Router,
+    private notifyService:NotificationService,
   ) { }
 
   ngOnInit(): void {
@@ -27,7 +29,12 @@ export class FormComponent implements OnInit {
     localStorage.setItem('password',this.service.register.value['password'])
     localStorage.setItem('linkedinurl',this.service.register.value['linkedinurl'])
 
-    this.route.navigate(['/dashboard'])
+    
+    setTimeout(()=>{                           //<<<---using ()=> syntax
+      this.notifyService.showSuccess("Success","Your data has been saved")
+      this.route.navigate(['/dashboard'])
+      localStorage.removeItem("login");
+    }, 5000);
   }
 
 }

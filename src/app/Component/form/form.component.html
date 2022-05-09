@@ -1,0 +1,80 @@
+<div class="container">
+    <mat-grid-list cols="2" rowHeight="12:19">
+        
+        <mat-grid-tile>
+            
+            
+            <form [formGroup]="service.register" class="normal-form">
+                <h3 class="md-display-1">Sign UP</h3>
+                
+                <div>
+                <input type="hidden" formControlName="$key">
+                    <mat-form-field appearance="standard" style="padding-left: 20px;" >
+                        <mat-label style="color: #195CDD;">Name</mat-label>
+                        <input formControlName="Name" matInput placeholder="Jane Doe">
+                        <mat-icon matSuffix> account_box </mat-icon>
+                        <mat-error *ngIf="service.register.controls['Name'].errors?.['required']">This field is Mandatory</mat-error>
+                        <mat-error *ngIf="service.register.controls['Name'].errors?.['pattern']">Enter only Alphabet & space</mat-error>                       
+                      </mat-form-field>
+                      </div>
+
+                      <!-- <mat-grid-tile colspan="2" class="full-width-field"> -->
+                        <div>
+                            <mat-form-field appearance="standard" style="padding-left:20px;">
+                                <mat-label style="color: #195CDD;">Email</mat-label>
+                                <input formControlName="email" matInput placeholder="pat@example.com">
+                                <mat-icon matSuffix> email</mat-icon>
+                                <mat-error *ngIf="service.register.controls['email'].errors?.['required']">This field is Mandatory</mat-error>
+                                <mat-error *ngIf="service.register.controls['email'].errors?.['pattern']">only enter gmail or yahoo email</mat-error>
+                              </mat-form-field>
+                        </div> 
+
+                        <div>
+                            <mat-form-field appearance="standard" style="padding-left: 20px;">
+                                <mat-label style="color: #195CDD;">Phone Number</mat-label>
+                                <input  formControlName="mobile" matInput placeholder="1234567890">
+                                <mat-icon matSuffix>phone</mat-icon>
+                                <mat-error *ngIf="service.register.controls['mobile'].errors?.['required']">This field is Mandatory</mat-error>
+                                <mat-error *ngIf="service.register.controls['mobile'].errors?.['pattern']">Enter Valied Phone Number</mat-error>                       
+                              </mat-form-field>
+                        </div>
+
+                        <div>
+                            <mat-form-field appearance="standard" style="padding-left: 20px;">
+                                <mat-label style="color: #195CDD;">Enter your password</mat-label>
+                                <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                                <mat-error *ngIf="service.register.controls['password'].errors?.['required']">This field is Mandatory</mat-error>
+                                <mat-error *ngIf="service.register.controls['password'].errors?.['pattern']">have at least 1 uppercase lowercase letter number special char</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div>
+                            <mat-form-field appearance="standard" style="padding-left: 20px;">
+                                <mat-label style="color: #195CDD;">Enter Linkedin Url</mat-label>
+                                <input formControlName="linkedinurl" matInput>
+                                <mat-icon matSuffix>language</mat-icon>
+                                <mat-error *ngIf="service.register.controls['linkedinurl'].errors?.['required']">This field is Mandatory</mat-error>
+                                <mat-error *ngIf="service.register.controls['linkedinurl'].errors?.['pattern']">Enter Valied Linkedin Url</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div style="padding-left: 20px;margin-top: 30px;">
+                            <button mat-button mat-raised-button (click)="register()" [disabled]="service.register.invalid" color="primary">Register</button>
+                        </div>
+
+            </form>
+        </mat-grid-tile>
+        
+        <mat-grid-tile>
+            <div>
+                <img src="../../../assets/signup-image.jpg" style="display: block;" alt="">
+                <a style="color: black;" routerLink="/login">I am already member</a>
+            </div>
+        
+        </mat-grid-tile>
+
+    </mat-grid-list>
+</div>
